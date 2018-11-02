@@ -1,6 +1,7 @@
 package Util;
 
 /**
+ * @class This abstract class is the access point to the hiragana alphabet.
  * Created by Tamino on 01.11.2018.
  */
 public abstract class HiraganaMatrix {
@@ -23,25 +24,14 @@ public abstract class HiraganaMatrix {
             {"ba", "bi", "bu", "be", "bo"},
             {"pa", "pi", "pu", "pe", "po"}
     };
-    /*
-    private static String[] aRow = {"a", "i", "u", "e", "o"};
-    private static String[] kRow = {"ka", "ki", "ku", "ke", "ko"};
-    private static String[] sRow = {"sa", "shi", "su", "se", "so"};
-    private static String[] tRow = {"ta", "chi", "tsu", "te", "to"};
-    private static String[] nRow = {"na", "ni", "nu", "ne", "no"};
-    private static String[] hRow = {"ha", "hi", "fu", "he", "ho"};
-    private static String[] mRow = {"ma", "mi", "mu", "me", "mo"};
-    private static String[] yRow = {"ya", null, "yu", null, "yo"};
-    private static String[] rRow = {"ra", "ri", "ru", "re", "ro"};
-    private static String[] wRow = {"wa", "wi", null, "we", "wo"};
-    private static String nSyllable = "n";
-    private static String[] gRow = {"ga", "gi", "gu", "ge", "go"};
-    private static String[] zRow = {"za", "ji", "zu", "ze", "zo"};
-    private static String[] dRow = {"da", "ji", "zu", "de", "do"};
-    private static String[] bRow = {"ba", "bi", "bu", "be", "bo"};
-    private static String[] pRow = {"pa", "pi", "pu", "pe", "po"};
-    */
 
+    /**
+     * Returns the specified syllable as a String. Note: Every syllable consists
+     * of one vowel and one consonant.
+     * @param vowel the vowel of the syllable
+     * @param consonant the consonant of the syllable
+     * @return the specified syllable as a String.
+     */
     public static String getSyllable(char vowel, char consonant) {
         int rowPosition;
         switch (vowel) {
@@ -121,6 +111,12 @@ public abstract class HiraganaMatrix {
         return hiraganaMatrix[rowPosition][columnPosition];
     }
 
+
+    /**
+     * Returns the specified special syllable as a String.
+     * @param consonant the special syllable identifier
+     * @return the specified syllable as a String.
+     */
     public static String getSyllable(char consonant) {
         if (consonant != 'n') {
             return null;
