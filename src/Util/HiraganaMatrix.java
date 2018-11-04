@@ -41,10 +41,10 @@ public abstract class HiraganaMatrix {
             case 'i':
                 rowPosition = 1;
                 break;
-            case 'e':
+            case 'u':
                 rowPosition = 2;
                 break;
-            case 'u':
+            case 'e':
                 rowPosition = 3;
                 break;
             case 'o':
@@ -108,7 +108,7 @@ public abstract class HiraganaMatrix {
             return null;
         }
 
-        return hiraganaMatrix[rowPosition][columnPosition];
+        return hiraganaMatrix[columnPosition][rowPosition];
     }
 
 
