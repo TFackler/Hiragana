@@ -6,27 +6,8 @@ package Util;
  */
 public abstract class HiraganaMatrix {
 
-    private static String[][] hiraganaRomanjiMatrix = {
-            {"a", "i", "u", "e", "o"},
-            {"ka", "ki", "ku", "ke", "ko"},
-            {"sa", "shi", "su", "se", "so"},
-            {"ta", "chi", "tsu", "te", "to"},
-            {"na", "ni", "nu", "ne", "no"},
-            {"ha", "hi", "fu", "he", "ho"},
-            {"ma", "mi", "mu", "me", "mo"},
-            {"ya", null, "yu", null, "yo"},
-            {"ra", "ri", "ru", "re", "ro"},
-            {"wa", "wi", null, "we", "wo"},
-            {"n", null, null, null, null},
-            {"ga", "gi", "gu", "ge", "go"},
-            {"za", "ji", "zu", "ze", "zo"},
-            {"da", "ji", "zu", "de", "do"},
-            {"ba", "bi", "bu", "be", "bo"},
-            {"pa", "pi", "pu", "pe", "po"}
-    };
-
     private static String[][] hiraganaMatrix = {
-            {"あ", "i", "u", "e", "o"},
+            {"a", "i", "u", "e", "o"},
             {"ka", "ki", "ku", "ke", "ko"},
             {"sa", "shi", "su", "se", "so"},
             {"ta", "chi", "tsu", "te", "to"},
@@ -60,10 +41,10 @@ public abstract class HiraganaMatrix {
             case 'i':
                 rowPosition = 1;
                 break;
-            case 'e':
+            case 'u':
                 rowPosition = 2;
                 break;
-            case 'u':
+            case 'e':
                 rowPosition = 3;
                 break;
             case 'o':
@@ -127,7 +108,7 @@ public abstract class HiraganaMatrix {
             return null;
         }
 
-        return hiraganaRomanjiMatrix[rowPosition][columnPosition];
+        return hiraganaMatrix[columnPosition][rowPosition];
     }
 
 
@@ -140,7 +121,7 @@ public abstract class HiraganaMatrix {
         if (consonant != 'n') {
             return null;
         }
-        return hiraganaRomanjiMatrix[10][0];
+        return hiraganaMatrix[10][0];
     }
 
 
