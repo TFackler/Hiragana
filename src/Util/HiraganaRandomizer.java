@@ -1,13 +1,23 @@
 package Util;
 
+import Logic.Syllable;
+
 import java.util.ArrayList;
 
 public class HiraganaRandomizer {
 
-    private ArrayList<String> hiragana = new ArrayList<String>();
+    private static HiraganaRandomizer unique = null;
 
-    public HiraganaRandomizer() {
+    private ArrayList<Syllable> hiragana = new ArrayList<Syllable>();
 
+    private HiraganaRandomizer() {
+
+    }
+
+    public static HiraganaRandomizer getInstance() {
+        if (unique == null)
+            return new HiraganaRandomizer();
+        return unique;
     }
 
     public void addRow(char consonant) {
@@ -18,9 +28,7 @@ public class HiraganaRandomizer {
         hiragana.add(HiraganaMatrix.getSyllable('o', consonant));
     }
 
-    public String getRandomSyllable() {
+    public Syllable getRandomSyllable() {
         return hiragana.get((int) (Math.random() * hiragana.size()));
     }
-
-
 }
