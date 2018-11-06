@@ -21,23 +21,61 @@ public abstract class HiraganaMatrix {
                     new Syllable("ke", "け"),
                     new Syllable("ko", "こ"),},
 
-            {       new Syllable("sa", "あ"),
-                    new Syllable("shi", "い"),
-                    new Syllable("su", "う"),
-                    new Syllable("se", "え"),
-                    new Syllable("so", "お"),},
+            {       new Syllable("sa", "さ"),
+                    new Syllable("shi", "し"),
+                    new Syllable("su", "す"),
+                    new Syllable("se", "せ"),
+                    new Syllable("so", "そ"),},
 
-            {       new Syllable("ta", "あ"),
-                    new Syllable("chi", "い"),
-                    new Syllable("tsu", "う"),
-                    new Syllable("te", "え"),
-                    new Syllable("to", "お"),},
+            {       new Syllable("ta", "た"),
+                    new Syllable("chi", "ち"),
+                    new Syllable("tsu", "つ"),
+                    new Syllable("te", "て"),
+                    new Syllable("to", "と"),},
 
-            {       new Syllable("na", "あ"),
-                    new Syllable("ni", "い"),
-                    new Syllable("nu", "う"),
-                    new Syllable("ne", "え"),
-                    new Syllable("no", "お"),}
+            {       new Syllable("na", "な"),
+                    new Syllable("ni", "に"),
+                    new Syllable("nu", "ぬ"),
+                    new Syllable("ne", "ね"),
+                    new Syllable("no", "の"),},
+
+            {       new Syllable("ha", "は"),
+                    new Syllable("hi", "ひ"),
+                    new Syllable("fu", "ふ"),
+                    new Syllable("he", "へ"),
+                    new Syllable("ho", "ほ"),},
+
+            {       new Syllable("ma", "ま"),
+                    new Syllable("mi", "み"),
+                    new Syllable("mu", "む"),
+                    new Syllable("me", "め"),
+                    new Syllable("mo", "も"),},
+
+            {       new Syllable("ya", "や"),
+                    null,
+                    new Syllable("yu", "ゆ"),
+                    null,
+                    new Syllable("yo", "よ"),},
+
+            {       new Syllable("ra", "ら"),
+                    new Syllable("ri", "り"),
+                    new Syllable("ru", "る"),
+                    new Syllable("re", "れ"),
+                    new Syllable("ro", "ろ"),},
+
+            {       new Syllable("wa", "わ"),
+                    null,
+                    null,
+                    null,
+                    new Syllable("wo", "を"),},
+
+            {       new Syllable("n", "ん"),
+                    null,
+                    null,
+                    null,
+                    null,}
+
+
     };
 
     /**
@@ -60,24 +98,6 @@ public abstract class HiraganaMatrix {
             {"pa", "pi", "pu", "pe", "po"}
     };
 
-    private static String[][] hiraganaMatrix = {
-            {"あ", "い", "う", "え", "お"},
-            {"ka", "ki", "ku", "ke", "ko"},
-            {"sa", "shi", "su", "se", "so"},
-            {"ta", "chi", "tsu", "te", "to"},
-            {"na", "ni", "nu", "ne", "no"},
-            {"ha", "hi", "fu", "he", "ho"},
-            {"ma", "mi", "mu", "me", "mo"},
-            {"ya", null, "yu", null, "yo"},
-            {"ra", "ri", "ru", "re", "ro"},
-            {"wa", "wi", null, "we", "wo"},
-            {"n", null, null, null, null},
-            {"ga", "gi", "gu", "ge", "go"},
-            {"za", "ji", "zu", "ze", "zo"},
-            {"da", "ji", "zu", "de", "do"},
-            {"ba", "bi", "bu", "be", "bo"},
-            {"pa", "pi", "pu", "pe", "po"}
-    };
     */
 
     /**

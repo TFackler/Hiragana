@@ -1,6 +1,7 @@
 package GUI;
 
 import Logic.Syllable;
+import Util.FontUtil;
 import Util.HiraganaRandomizer;
 
 import javax.swing.*;
@@ -17,6 +18,8 @@ public class RandomSingleHiraganaPanel extends JPanel{
 
     private static RandomSingleHiraganaPanel unique = null;
 
+    private boolean isHidden = false;
+
     private HiraganaRandomizer randomizer;
 
     private JPanel characterPanel;
@@ -31,6 +34,9 @@ public class RandomSingleHiraganaPanel extends JPanel{
         randomizer = HiraganaRandomizer.getInstance();
         randomizer.addRow('a');
         randomizer.addRow('k');
+        randomizer.addRow('s');
+        randomizer.addRow('t');
+        randomizer.addRow('n');
 
         /**
          * initializing the part of the window responsible for displaying the romanji and hiragana variant of
@@ -40,11 +46,11 @@ public class RandomSingleHiraganaPanel extends JPanel{
         characterPanel.setLayout(new GridLayout(1,2));
 
         romanjiLabel = new JLabel("", SwingConstants.CENTER);
-        romanjiLabel.setFont(new Font(null, Font.PLAIN, 100));
+        romanjiLabel.setFont(new Font(null, Font.PLAIN, 150));
         characterPanel.add(romanjiLabel);
 
         hiraganaLabel = new JLabel("", SwingConstants.CENTER);
-        hiraganaLabel.setFont(new Font(null, Font.PLAIN, 200));
+        hiraganaLabel.setFont(FontUtil.getHiraganaFont(getClass().getClassLoader()).deriveFont(200f));
         characterPanel.add(hiraganaLabel);
 
         add(characterPanel, BorderLayout.CENTER);
@@ -57,6 +63,24 @@ public class RandomSingleHiraganaPanel extends JPanel{
         JButton bBack = new JButton("<-");
         //bBack.addActionListener();
         buttonPanel.add(bBack);
+
+        JButton bToggleHide = new JButton("hide");
+        bToggleHide.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (isHidden) {
+                    isHidden = false;
+                    bToggleHide.setText("hide");
+                    hiraganaLabel.setForeground(getForeground());
+                } else {
+                    isHidden = true;
+                    bToggleHide.setText("show");
+                    hiraganaLabel.setForeground(hiraganaLabel.getBackground());
+                }
+            }
+        });
+        buttonPanel.add(bToggleHide);
+
 
         JButton bNext = new JButton("->");
         bNext.addActionListener(new ActionListener() {
