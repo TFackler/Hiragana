@@ -12,7 +12,6 @@ public abstract class FontUtil {
 
     private static Font hiraganaFont = null;
 
-
     public static Font getHiraganaFont(ClassLoader classLoader) {
         if (hiraganaFont == null) {
             try {
@@ -24,5 +23,12 @@ public abstract class FontUtil {
             }
         }
         return hiraganaFont;
+    }
+
+    public static void setFontAntiAliasingOn() {
+        System.setProperty("swing.useSystemFontSettings", "on");
+        System.setProperty("swing.useSystemAAFontSettings", "on");
+        System.setProperty("awt.useSystemAAFontSettings", "on");
+        System.setProperty("swing.aatext", "true");
     }
 }

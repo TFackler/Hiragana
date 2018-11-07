@@ -14,9 +14,9 @@ import java.awt.event.KeyEvent;
 /**
  * Created by TFackler on 05.11.2018.
  */
-public class RandomSingleHiraganaPanel extends JPanel{
+public class RandomSingleHiraganaPanelFontCompare extends JPanel{
 
-    private static RandomSingleHiraganaPanel unique = null;
+    private static RandomSingleHiraganaPanelFontCompare unique = null;
 
     private boolean isHidden = false;
 
@@ -25,21 +25,22 @@ public class RandomSingleHiraganaPanel extends JPanel{
     private JPanel characterPanel;
     private JLabel romanjiLabel;
     private JLabel hiraganaLabel;
+    private JLabel hiraganaLabel1;
 
     private JPanel buttonPanel;
 
-    private RandomSingleHiraganaPanel() {
+    private RandomSingleHiraganaPanelFontCompare() {
         setLayout(new BorderLayout());
 
         randomizer = HiraganaRandomizer.getInstance();
-        randomizer.addRow('a');
+        randomizer.addRow('k');
 
         /**
          * initializing the part of the window responsible for displaying the romanji and hiragana variant of
          * the syllable
          */
         characterPanel = new JPanel();
-        characterPanel.setLayout(new GridLayout(1,2));
+        characterPanel.setLayout(new GridLayout(1,3));
 
         romanjiLabel = new JLabel("", SwingConstants.CENTER);
         romanjiLabel.setFont(new Font(null, Font.PLAIN, 150));
@@ -47,8 +48,15 @@ public class RandomSingleHiraganaPanel extends JPanel{
 
         hiraganaLabel = new JLabel("", SwingConstants.CENTER);
         // hiraganaLabel.setFont(FontUtil.getHiraganaFont(getClass().getClassLoader()).deriveFont(200f));
-        hiraganaLabel.setFont(new Font(null, Font.PLAIN, 150));
+        hiraganaLabel.setFont(new Font(null, Font.PLAIN, 40));
         characterPanel.add(hiraganaLabel);
+
+        FontUtil.setFontAntiAliasingOn();
+
+        hiraganaLabel1 = new JLabel("", SwingConstants.CENTER);
+        // hiraganaLabel.setFont(FontUtil.getHiraganaFont(getClass().getClassLoader()).deriveFont(200f));
+        hiraganaLabel1.setFont(new Font(null, Font.PLAIN, 40));
+        characterPanel.add(hiraganaLabel1);
 
         add(characterPanel, BorderLayout.CENTER);
 
@@ -86,6 +94,7 @@ public class RandomSingleHiraganaPanel extends JPanel{
                 Syllable s = randomizer.getRandomSyllable();
                 romanjiLabel.setText(s.getRomanji());
                 hiraganaLabel.setText(s.getHiragana());
+                hiraganaLabel1.setText(s.getHiragana());
             }
         });
         bNext.addKeyListener(new KeyAdapter() {
@@ -95,6 +104,7 @@ public class RandomSingleHiraganaPanel extends JPanel{
                     Syllable s = randomizer.getRandomSyllable();
                     romanjiLabel.setText(s.getRomanji());
                     hiraganaLabel.setText(s.getHiragana());
+                    hiraganaLabel1.setText(s.getHiragana());
                 }
             }
         });
@@ -103,9 +113,9 @@ public class RandomSingleHiraganaPanel extends JPanel{
         add(buttonPanel, BorderLayout.SOUTH);
     }
 
-    public static RandomSingleHiraganaPanel getInstance() {
+    public static RandomSingleHiraganaPanelFontCompare getInstance() {
         if (unique == null)
-            return new RandomSingleHiraganaPanel();
+            return new RandomSingleHiraganaPanelFontCompare();
         return unique;
     }
 
