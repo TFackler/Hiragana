@@ -1,5 +1,6 @@
 package GUI;
 
+import Logic.Hiragana;
 import Logic.Syllable;
 import Util.FontUtil;
 import Util.HiraganaRandomizer;
@@ -10,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 /**
  * Created by TFackler on 05.11.2018.
@@ -19,6 +21,9 @@ public class RandomSingleHiraganaPanel extends JPanel{
     private static RandomSingleHiraganaPanel unique = null;
 
     private boolean isHidden = false;
+
+    private ArrayList<Syllable> hiraganaHistory = new ArrayList<Syllable>(100);
+    private int historyPos = 0;
 
     private HiraganaRandomizer randomizer;
 
@@ -61,7 +66,9 @@ public class RandomSingleHiraganaPanel extends JPanel{
         buttonPanel = new JPanel();
 
         JButton bBack = new JButton("<-");
-        //bBack.addActionListener();
+        bBack.addActionListener(e -> {
+
+        });
         buttonPanel.add(bBack);
 
         JButton bToggleHide = new JButton("hide");
@@ -111,6 +118,34 @@ public class RandomSingleHiraganaPanel extends JPanel{
             return new RandomSingleHiraganaPanel();
         return unique;
     }
+
+    public void addHiraganaToHistory(Syllable syllable) {
+        if (hiraganaHistory.size() == 100) {
+            hiraganaHistory.remove(0);
+        } else {
+            historyPos++;
+        }
+        hiraganaHistory.add(syllable);
+    }
+
+    public void nextHiragana() {
+        if (hiraganaHistory.size() == historyPos + 1) {
+            
+            randomizer.getRandomSyllable();
+            // add syllable
+            // set text
+        }
+    }
+
+    public void prevHiragana() {
+        if (historyPos != 0) {
+            historyPos--;
+            romanjiLabel.setText(hiraganaHistory.get(historyPos).getRomanji());
+            hiraganaLabel.setText(hiraganaHistory.get(historyPos).getHiragana());
+        }
+
+    }
+
 
 
 }
