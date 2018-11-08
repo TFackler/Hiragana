@@ -1,7 +1,6 @@
 package GUI;
 
-import Logic.Hiragana;
-import Logic.Syllable;
+import Logic.*;
 import Util.FontUtil;
 import Util.HiraganaRandomizer;
 
@@ -22,14 +21,15 @@ public class RandomSingleHiraganaPanel extends JPanel{
 
     private boolean isHidden = false;
 
-    private ArrayList<Syllable> hiraganaHistory = new ArrayList<Syllable>(100);
-    private int historyPos = 0;
-
     private HiraganaRandomizer randomizer;
 
     private JPanel characterPanel;
     private JLabel romanjiLabel;
     private JLabel hiraganaLabel;
+
+
+    private SyllableObjectCreator soc = new SyllableObjectCreator();
+    private History<Syllable> hiraganaHistory = new History<Syllable>(100, soc, Syllable.class);
 
     private JPanel buttonPanel;
 
@@ -67,7 +67,10 @@ public class RandomSingleHiraganaPanel extends JPanel{
 
         JButton bBack = new JButton("<-");
         bBack.addActionListener(e -> {
-
+            hiraganaHistory.previous();
+            Syllable s = hiraganaHistory.getCurrent();
+            romanjiLabel.setText(s.getRomanji());
+            hiraganaLabel.setText(s.getHiragana());
         });
         buttonPanel.add(bBack);
 
@@ -93,7 +96,8 @@ public class RandomSingleHiraganaPanel extends JPanel{
         bNext.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Syllable s = randomizer.getRandomSyllable();
+                hiraganaHistory.next();
+                Syllable s = hiraganaHistory.getCurrent();
                 romanjiLabel.setText(s.getRomanji());
                 hiraganaLabel.setText(s.getHiragana());
             }
@@ -102,7 +106,8 @@ public class RandomSingleHiraganaPanel extends JPanel{
             @Override
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                    Syllable s = randomizer.getRandomSyllable();
+                    hiraganaHistory.next();
+                    Syllable s = hiraganaHistory.getCurrent();
                     romanjiLabel.setText(s.getRomanji());
                     hiraganaLabel.setText(s.getHiragana());
                 }
@@ -118,34 +123,4 @@ public class RandomSingleHiraganaPanel extends JPanel{
             return new RandomSingleHiraganaPanel();
         return unique;
     }
-
-    public void addHiraganaToHistory(Syllable syllable) {
-        if (hiraganaHistory.size() == 100) {
-            hiraganaHistory.remove(0);
-        } else {
-            historyPos++;
-        }
-        hiraganaHistory.add(syllable);
-    }
-
-    public void nextHiragana() {
-        if (hiraganaHistory.size() == historyPos + 1) {
-            
-            randomizer.getRandomSyllable();
-            // add syllable
-            // set text
-        }
-    }
-
-    public void prevHiragana() {
-        if (historyPos != 0) {
-            historyPos--;
-            romanjiLabel.setText(hiraganaHistory.get(historyPos).getRomanji());
-            hiraganaLabel.setText(hiraganaHistory.get(historyPos).getHiragana());
-        }
-
-    }
-
-
-
 }
