@@ -2,42 +2,28 @@ package Logic;
 
 import java.util.ArrayList;
 
-public class History<E> {
-
-    private HistoryObjectCreater hoc;
+public abstract class History<E> {
 
     private ArrayList<E> historyList;
 
-    private final Class<E> type;
-
     private int historyPos;
 
-    private int capacity;
+    private int maxCapacity;
 
-    public History(int capacity ,HistoryObjectCreater hoc, Class<E> type) {
-        this.hoc = hoc;
-        historyList = new ArrayList<E>(capacity);
+    public History(int capacity) {
+        historyList = new ArrayList<>();
         historyPos = -1;
-        this.capacity = capacity;
-        this.type = type;
-
-        // test for right type of return of hoc
+        this.maxCapacity = capacity;
     }
 
     public void next() {
-        if (historyPos == historyList.size()) {
-            Object obj = hoc.createNewObject();
-            if (obj != null && obj.getClass().equals(type)) {
-                E newObject = (E) obj;
-                if (historyPos == capacity - 1) {
-                    historyList.remove(0);
-                } else {
-                    historyPos++;
-                }
-                historyList.add(newObject);
+        if (historyPos == historyList.size() - 1) {
+            if (historyPos == maxCapacity - 1) {
+                historyList.remove(0);
             } else {
-                throw new RuntimeException("history and history creation type mismatch!");
+                historyPos++;
             }
+            historyList.add(createNew());
         } else {
             historyPos++;
         }
@@ -55,5 +41,5 @@ public class History<E> {
         return historyList.get(historyPos);
     }
 
-
+    public abstract E createNew();
 }

@@ -10,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 
 /**
  * Created by TFackler on 05.11.2018.
@@ -27,9 +26,7 @@ public class RandomSingleHiraganaPanel extends JPanel{
     private JLabel romanjiLabel;
     private JLabel hiraganaLabel;
 
-
-    private SyllableObjectCreator soc = new SyllableObjectCreator();
-    private History<Syllable> hiraganaHistory = new History<Syllable>(100, soc, Syllable.class);
+    private SyllableHistory hiraganaHistory = new SyllableHistory(100);
 
     private JPanel buttonPanel;
 
