@@ -16,12 +16,12 @@ public class MainFrame extends JFrame {
 
     private JLabel hiraganaText;
 
-    private RandomSingleHiraganaPanelFontCompare randomSingleHiraganaPanel;
+    private RandomSingleHiraganaPanel randomSingleHiraganaPanel;
 
 
     public MainFrame() {
         setSize(800,400);
-        randomSingleHiraganaPanel = RandomSingleHiraganaPanelFontCompare.getInstance();
+        randomSingleHiraganaPanel = RandomSingleHiraganaPanel.getInstance();
         add(randomSingleHiraganaPanel);
 
 
