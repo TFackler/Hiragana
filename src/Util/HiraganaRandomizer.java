@@ -8,10 +8,11 @@ public class HiraganaRandomizer {
 
     private static HiraganaRandomizer unique = null;
 
-    private ArrayList<Syllable> hiragana = new ArrayList<Syllable>();
+    private static ArrayList<Syllable> hiragana = new ArrayList<>();
+
+    private Syllable errHiragana = new Syllable("err", "err");
 
     private HiraganaRandomizer() {
-
     }
 
     public static HiraganaRandomizer getInstance() {
@@ -29,6 +30,10 @@ public class HiraganaRandomizer {
     }
 
     public Syllable getRandomSyllable() {
-        return hiragana.get((int) (Math.random() * hiragana.size()));
+        if (hiragana.isEmpty()) {
+            return errHiragana;
+        } else {
+            return hiragana.get((int) (Math.random() * hiragana.size()));
+        }
     }
 }

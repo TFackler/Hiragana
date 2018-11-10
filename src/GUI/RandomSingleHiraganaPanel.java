@@ -1,6 +1,6 @@
 package GUI;
 
-import Logic.Syllable;
+import Logic.*;
 import Util.FontUtil;
 import Util.HiraganaRandomizer;
 
@@ -25,6 +25,8 @@ public class RandomSingleHiraganaPanel extends JPanel{
     private JPanel characterPanel;
     private JLabel romanjiLabel;
     private JLabel hiraganaLabel;
+
+    private SyllableHistory hiraganaHistory = new SyllableHistory(100);
 
     private JPanel buttonPanel;
 
@@ -58,7 +60,12 @@ public class RandomSingleHiraganaPanel extends JPanel{
         buttonPanel = new JPanel();
 
         JButton bBack = new JButton("<-");
-        //bBack.addActionListener();
+        bBack.addActionListener(e -> {
+            hiraganaHistory.previous();
+            Syllable s = hiraganaHistory.getCurrent();
+            romanjiLabel.setText(s.getRomanji());
+            hiraganaLabel.setText(s.getHiragana());
+        });
         buttonPanel.add(bBack);
 
         JButton bToggleHide = new JButton("hide");
@@ -83,7 +90,8 @@ public class RandomSingleHiraganaPanel extends JPanel{
         bNext.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Syllable s = randomizer.getRandomSyllable();
+                hiraganaHistory.next();
+                Syllable s = hiraganaHistory.getCurrent();
                 romanjiLabel.setText(s.getRomanji());
                 hiraganaLabel.setText(s.getHiragana());
             }
@@ -92,7 +100,8 @@ public class RandomSingleHiraganaPanel extends JPanel{
             @Override
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                    Syllable s = randomizer.getRandomSyllable();
+                    hiraganaHistory.next();
+                    Syllable s = hiraganaHistory.getCurrent();
                     romanjiLabel.setText(s.getRomanji());
                     hiraganaLabel.setText(s.getHiragana());
                 }
@@ -108,6 +117,4 @@ public class RandomSingleHiraganaPanel extends JPanel{
             return new RandomSingleHiraganaPanel();
         return unique;
     }
-
-
 }
