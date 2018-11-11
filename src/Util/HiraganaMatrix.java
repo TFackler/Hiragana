@@ -198,4 +198,8 @@ public abstract class HiraganaMatrix {
         }
         return null;
     }
+
+    public static Syllable[][] getMatrix() {
+        return hiraganaSyllableMatrix;
+    }
 }

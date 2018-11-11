@@ -2,6 +2,7 @@ package GUI;
 
 import Logic.*;
 import Util.FontUtil;
+import Util.HiraganaMatrix;
 import Util.HiraganaRandomizer;
 
 import javax.swing.*;
@@ -10,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Random;
 
 /**
  * Created by TFackler on 05.11.2018.
@@ -26,11 +28,15 @@ public class RandomSingleHiraganaPanel extends JPanel{
     private JLabel romanjiLabel;
     private JLabel hiraganaLabel;
 
+    private JFrame parent;
+
     private SyllableHistory hiraganaHistory = new SyllableHistory(100);
 
     private JPanel buttonPanel;
 
-    private RandomSingleHiraganaPanel() {
+    private RandomSingleHiraganaPanel(JFrame parent) {
+        this.parent = parent;
+
         setLayout(new BorderLayout());
 
         randomizer = HiraganaRandomizer.getInstance();
@@ -109,12 +115,26 @@ public class RandomSingleHiraganaPanel extends JPanel{
         });
         buttonPanel.add(bNext);
 
-        add(buttonPanel, BorderLayout.SOUTH);
+        JButton bSelect = new JButton("open selection");
+        bSelect.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new HiraganaSelectDialog(parent, HiraganaMatrix.getMatrix(), false, false);
+                /**
+                 *  Integer[][] intMatrix = {{1,2,3,4,5}, {6,7,8,9,10}};
+                 *  new IntegerMatrix(parent, intMatrix, false, false);
+                 */
+
+            }
+        });
+        buttonPanel.add(bSelect);
+
+                add(buttonPanel, BorderLayout.SOUTH);
     }
 
-    public static RandomSingleHiraganaPanel getInstance() {
+    public static RandomSingleHiraganaPanel getInstance(JFrame parent) {
         if (unique == null)
-            return new RandomSingleHiraganaPanel();
+            return new RandomSingleHiraganaPanel(parent);
         return unique;
     }
 }

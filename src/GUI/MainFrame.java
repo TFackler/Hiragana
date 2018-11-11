@@ -21,7 +21,7 @@ public class MainFrame extends JFrame {
 
     public MainFrame() {
         setSize(800,400);
-        randomSingleHiraganaPanel = RandomSingleHiraganaPanel.getInstance();
+        randomSingleHiraganaPanel = RandomSingleHiraganaPanel.getInstance(this);
         add(randomSingleHiraganaPanel);
 
 
