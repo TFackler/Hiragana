@@ -1,6 +1,7 @@
 package GUI;
 
 import Logic.Syllable;
+import Util.FontUtil;
 
 import java.awt.*;
 
@@ -12,6 +13,11 @@ public class HiraganaSelectDialog extends MatrixSelectDialog<Syllable> {
 
     @Override
     public String getCheckboxLabelString(Syllable object) {
-        return object.getHiragana() + "\n" + object.getRomanji();
+        return "<html><p \"style:align=center\">" + object.getHiragana() + "<br>" + object.getRomanji() + "</p></html>";
+    }
+
+    @Override
+    public Font getFont() {
+        return FontUtil.getHiraganaFont(getClass().getClassLoader());
     }
 }

@@ -15,7 +15,8 @@ public abstract class FontUtil {
     public static Font getHiraganaFont(ClassLoader classLoader) {
         if (hiraganaFont == null) {
             try {
-                File fontFile = new File(classLoader.getResource("res/nukamiso__beta08.ttf").getFile());
+                // File fontFile = new File(classLoader.getResource("res/nukamiso__beta08.ttf").getFile());
+                File fontFile = new File(classLoader.getResource("res/UDDigiKyokashoN-R.ttc").getFile());
                 hiraganaFont = Font.createFont(Font.TRUETYPE_FONT, fontFile);
             } catch (IOException | FontFormatException e) {
                 System.err.println("Error creating Font!");

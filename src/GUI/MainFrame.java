@@ -20,6 +20,10 @@ public class MainFrame extends JFrame {
 
 
     public MainFrame() {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {}
+
         setSize(800,400);
         randomSingleHiraganaPanel = RandomSingleHiraganaPanel.getInstance(this);
         add(randomSingleHiraganaPanel);

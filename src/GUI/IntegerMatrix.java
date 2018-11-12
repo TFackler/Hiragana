@@ -13,4 +13,9 @@ public class IntegerMatrix extends MatrixSelectDialog<Integer> {
     public String getCheckboxLabelString(Integer object) {
         return object.toString();
     }
+
+    @Override
+    public Font getFont() {
+        return new Font(null, Font.PLAIN, 30);
+    }
 }
