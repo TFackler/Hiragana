@@ -13,7 +13,7 @@ public class HiraganaSelectDialog extends MatrixSelectDialog<Syllable> {
 
     @Override
     public String getCheckboxLabelString(Syllable object) {
-        return "<html><p \"style:align=center\">" + object.getHiragana() + "<br>" + object.getRomanji() + "</p></html>";
+        return "<html><p \"style:align=center\">" + object.getHiragana() + " (" + object.getRomanji() + ")</p></html>";
     }
 
     @Override
