@@ -1,7 +1,7 @@
 package Logic;
 
 /**
- * This class represents a hiragana syllables. It contains information about the
+ * This class represents a hiragana syllable. It contains information about the
  * hiragana and the romanji representation of a syllable.
  */
 public class Syllable {

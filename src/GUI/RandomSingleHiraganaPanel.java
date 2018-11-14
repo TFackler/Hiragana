@@ -14,10 +14,13 @@ import java.awt.event.KeyEvent;
 import java.util.Random;
 
 /**
- * Created by TFackler on 05.11.2018.
+ * A class for displaying the random hiragana writing exercise in a JPanel
  */
 public class RandomSingleHiraganaPanel extends JPanel{
 
+    /**
+     *
+     */
     private static RandomSingleHiraganaPanel unique = null;
 
     private boolean isHidden = false;
@@ -119,12 +122,7 @@ public class RandomSingleHiraganaPanel extends JPanel{
         bSelect.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new HiraganaSelectDialog(parent, HiraganaMatrix.getMatrix(), false, false);
-                /**
-                 *  Integer[][] intMatrix = {{1,2,3,4,5}, {6,7,8,9,10}};
-                 *  new IntegerMatrix(parent, intMatrix, false, false);
-                 */
-
+                new HiraganaSelectDialog(parent, false, false);
             }
         });
         buttonPanel.add(bSelect);

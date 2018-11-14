@@ -78,27 +78,6 @@ public abstract class HiraganaMatrix {
 
     };
 
-    /**
-    private static String[][] hiraganaRomanjiMatrix = {
-            {"a", "i", "u", "e", "o"},
-            {"ka", "ki", "ku", "ke", "ko"},
-            {"sa", "shi", "su", "se", "so"},
-            {"ta", "chi", "tsu", "te", "to"},
-            {"na", "ni", "nu", "ne", "no"},
-            {"ha", "hi", "fu", "he", "ho"},
-            {"ma", "mi", "mu", "me", "mo"},
-            {"ya", null, "yu", null, "yo"},
-            {"ra", "ri", "ru", "re", "ro"},
-            {"wa", "wi", null, "we", "wo"},
-            {"n", null, null, null, null},
-            {"ga", "gi", "gu", "ge", "go"},
-            {"za", "ji", "zu", "ze", "zo"},
-            {"da", "ji", "zu", "de", "do"},
-            {"ba", "bi", "bu", "be", "bo"},
-            {"pa", "pi", "pu", "pe", "po"}
-    };
-
-    */
 
     /**
      * Returns the specified romanji syllable as a String. Note: Every syllable consists
@@ -199,6 +178,13 @@ public abstract class HiraganaMatrix {
         return null;
     }
 
+    /**
+     * Returns the one existent hiragana matrix, which is a matrix consisting
+     * of all the hiragana syllables.
+     * The objects in the matrix are <Code>Syllable</Code>-objects.
+     * @return the matrix containing syllables which represent every hiragana
+     * syllable
+     */
     public static Syllable[][] getMatrix() {
         return hiraganaSyllableMatrix;
     }
