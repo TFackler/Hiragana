@@ -19,25 +19,53 @@ import java.util.Random;
 public class RandomSingleHiraganaPanel extends JPanel{
 
     /**
-     *
+     * the one random hiragana panel that can exist at once
      */
     private static RandomSingleHiraganaPanel unique = null;
 
+    /**
+     * shows wether the hiragana symbol is hidden
+     */
     private boolean isHidden = false;
 
+    /**
+     * the object, that randomizes the order of appearing hiragana
+     */
     private HiraganaRandomizer randomizer;
 
+    /**
+     * the parent JFrame in which this panel is embedded
+     */
+    private JFrame parent;
+
+    /**
+     * the panel in which the hiragana and romanji characters are embedded in
+     */
     private JPanel characterPanel;
+
+    /**
+     * the labels in which the hiragana and romanji are written
+     */
     private JLabel romanjiLabel;
     private JLabel hiraganaLabel;
 
-    private JFrame parent;
-
+    /**
+     * the history used for keeping track of the syllable order
+     */
     private SyllableHistory hiraganaHistory = new SyllableHistory(100);
 
+    /**
+     * the panel in which the buttons are located
+     */
     private JPanel buttonPanel;
 
+    /**
+     * Constructor, that creates a new panel for displaying the random hirgana
+     * exercise
+     * @param parent the JFrame this panel is embedded in
+     */
     private RandomSingleHiraganaPanel(JFrame parent) {
+
         this.parent = parent;
 
         setLayout(new BorderLayout());
@@ -105,17 +133,6 @@ public class RandomSingleHiraganaPanel extends JPanel{
                 hiraganaLabel.setText(s.getHiragana());
             }
         });
-        bNext.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                    hiraganaHistory.next();
-                    Syllable s = hiraganaHistory.getCurrent();
-                    romanjiLabel.setText(s.getRomanji());
-                    hiraganaLabel.setText(s.getHiragana());
-                }
-            }
-        });
         buttonPanel.add(bNext);
 
         JButton bSelect = new JButton("open selection");
@@ -127,9 +144,29 @@ public class RandomSingleHiraganaPanel extends JPanel{
         });
         buttonPanel.add(bSelect);
 
-                add(buttonPanel, BorderLayout.SOUTH);
+        /**
+         * Adding Keylisteners for extended UX
+         */
+        bNext.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                    hiraganaHistory.next();
+                    Syllable s = hiraganaHistory.getCurrent();
+                    romanjiLabel.setText(s.getRomanji());
+                    hiraganaLabel.setText(s.getHiragana());
+                }
+            }
+        });
+
+        add(buttonPanel, BorderLayout.SOUTH);
     }
 
+    /**
+     * The method that creates the one unique instance of this class
+     * @param parent the JFrame the panel is embedded in
+     * @return the created or existent unique instance of this class
+     */
     public static RandomSingleHiraganaPanel getInstance(JFrame parent) {
         if (unique == null)
             return new RandomSingleHiraganaPanel(parent);

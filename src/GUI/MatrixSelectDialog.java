@@ -35,14 +35,29 @@ public abstract class MatrixSelectDialog<E> extends JDialog {
      */
     private static final boolean IS_HORIZONTAL = true;
 
+    /**
+     * Creates a new modal JDialog with a matrix of objects specified by the
+     * type of this class. Each object can then be selected by the user and the
+     * current state of the selection can be requested.
+     * @param parent the parent frame of this modal dialog
+     * @param matrix the matrix which is used to fill the panel with information
+     * @param hasColumnSelector if this is true a checkbox for each column is
+     *                          created that allows the user to select a column
+     *                          at once
+     * @param hasRowSelector if this is true a checkbox for each row is created
+     *                       that allows the user to select a row at once
+     */
     public MatrixSelectDialog(Frame parent, E[][] matrix, boolean hasColumnSelector,  boolean hasRowSelector) {
         super(parent, true);
+
+        /**
+         * changes look and feel to the windows standard
+         */
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {}
-        this.matrix = matrix;
-        font = getFont();
 
+        this.matrix = matrix;
         if (matrix == null) {
             return;
         }
@@ -52,13 +67,16 @@ public abstract class MatrixSelectDialog<E> extends JDialog {
 
         checkboxMatrix = new Checkbox[matrixHeight][matrixWidth];
 
+        font = getFont();
+
         if (IS_HORIZONTAL) {
             setLayout(new GridLayout(matrixWidth, matrixHeight));
         } else {
             setLayout(new GridLayout(matrixHeight, matrixWidth));
         }
-
-
+        /**
+         * displays the matrix and creates the corresponding checkboxes
+         */
         for (int i = 0; i < matrixHeight; i++) {
             for (int j = 0; j < matrixWidth; j++) {
                 JPanel panel = new JPanel();
