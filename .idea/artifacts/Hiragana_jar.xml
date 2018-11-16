@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Hiragana:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Hiragana_jar</output-path>
+    <root id="archive" name="Hiragana.jar">
+      <element id="module-output" name="Hiragana" />
+    </root>
+  </artifact>
+</component>

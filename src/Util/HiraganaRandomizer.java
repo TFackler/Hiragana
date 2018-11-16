@@ -73,4 +73,18 @@ public class HiraganaRandomizer {
             return hiragana.get((int) (Math.random() * hiragana.size()));
         }
     }
+
+    public void initFromBooleanMatrix(Boolean[][] b) {
+        if (b.length != HiraganaMatrix.getMatrix().length || b[0].length != HiraganaMatrix.getMatrix()[0].length)
+            return;
+
+        hiragana.clear();
+        for (int i = 0; i < HiraganaMatrix.getMatrix().length; i++) {
+            for (int j = 0; j < HiraganaMatrix.getMatrix()[0].length; j++) {
+                if (b[i][j])
+                    hiragana.add(HiraganaMatrix.getMatrix()[i][j]);
+
+            }
+        }
+    }
 }

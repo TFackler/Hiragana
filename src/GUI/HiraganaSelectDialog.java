@@ -42,6 +42,7 @@ public class HiraganaSelectDialog extends MatrixSelectDialog<Syllable> {
      */
     @Override
     public Font getFont() {
-        return FontUtil.getHiraganaFont(getClass().getClassLoader());
+        return new Font(null, Font.PLAIN, 12);
+        //return FontUtil.getHiraganaFont(getClass().getClassLoader());
     }
 }
