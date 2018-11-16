@@ -5,13 +5,18 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Created by TFackler on 06.11.2018.
+ * A abstract class containing methods for managing Fonts
  */
-
 public abstract class FontUtil {
 
+    // the default font for the hiragana strings
     private static Font hiraganaFont = null;
 
+    /**
+     * Returns the default font for the hiragana strings.
+     * @param classLoader the classloader used for extracting the font from the res folder
+     * @return the font used for hiragana strings
+     */
     public static Font getHiraganaFont(ClassLoader classLoader) {
         if (hiraganaFont == null) {
             try {
@@ -20,12 +25,15 @@ public abstract class FontUtil {
                 hiraganaFont = Font.createFont(Font.TRUETYPE_FONT, fontFile);
             } catch (IOException | FontFormatException e) {
                 System.err.println("Error creating Font!");
-                //Handle exception
             }
         }
         return hiraganaFont;
     }
 
+    /**
+     * Activates FontAntiAliasing.
+     * (Makes the text look more focused.)
+     */
     public static void setFontAntiAliasingOn() {
         System.setProperty("swing.useSystemFontSettings", "on");
         System.setProperty("swing.useSystemAAFontSettings", "on");

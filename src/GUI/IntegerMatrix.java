@@ -2,6 +2,7 @@ package GUI;
 
 import java.awt.*;
 
+@Deprecated
 public class IntegerMatrix extends MatrixSelectDialog<Integer> {
 
 
