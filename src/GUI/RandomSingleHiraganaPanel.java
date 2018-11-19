@@ -71,7 +71,7 @@ public class RandomSingleHiraganaPanel extends JPanel{
         setLayout(new BorderLayout());
 
         randomizer = HiraganaRandomizer.getInstance();
-        randomizer.addRow('a');
+        randomizer.addAll();
 
         /**
          * initializing the part of the window responsible for displaying the romanji and hiragana variant of

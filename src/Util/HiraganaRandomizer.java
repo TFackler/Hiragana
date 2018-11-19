@@ -70,7 +70,29 @@ public class HiraganaRandomizer {
         if (hiragana.isEmpty()) {
             return errHiragana;
         } else {
-            return hiragana.get((int) (Math.random() * hiragana.size()));
+            Syllable randomHiragana = null;
+            do {
+                randomHiragana = hiragana.get((int) (Math.random() * hiragana.size()));
+            } while (randomHiragana == null);
+            return randomHiragana;
         }
+    }
+
+    public void clear() {
+        hiragana.clear();
+    }
+
+    public void addAll() {
+        addRow('a');
+        addRow('k');
+        addRow('s');
+        addRow('t');
+        addRow('n');
+        addRow('h');
+        addRow('m');
+        addRow('y');
+        addRow('r');
+        addRow('w');
+        hiragana.add(HiraganaMatrix.getSyllable('n'));
     }
 }
