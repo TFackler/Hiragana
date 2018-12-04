@@ -4,6 +4,7 @@ import Logic.*;
 import Util.FontUtil;
 import Util.HiraganaMatrix;
 import Util.HiraganaRandomizer;
+import com.sun.org.apache.xalan.internal.xsltc.compiler.util.RtMethodGenerator;
 
 import javax.swing.*;
 import java.awt.*;
@@ -135,11 +136,16 @@ public class RandomSingleHiraganaPanel extends JPanel{
         });
         buttonPanel.add(bNext);
 
+        // selection
+
         JButton bSelect = new JButton("open selection");
         bSelect.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new HiraganaSelectDialog(parent, false, false);
+                HiraganaSelectDialog hsDialog = new HiraganaSelectDialog(parent, false, false);
+                // TODO boolean matrix has to be given to the hiragana randomizer
+                hsDialog.getBooleanMatrix();
+                hsDialog.exit();
             }
         });
         buttonPanel.add(bSelect);

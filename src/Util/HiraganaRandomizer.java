@@ -78,10 +78,16 @@ public class HiraganaRandomizer {
         }
     }
 
+    /**
+     * Clears the randomizer pool.
+     */
     public void clear() {
         hiragana.clear();
     }
 
+    /**
+     * Adds all of the Hiragana Syllables.
+     */
     public void addAll() {
         addRow('a');
         addRow('k');
@@ -93,6 +99,38 @@ public class HiraganaRandomizer {
         addRow('y');
         addRow('r');
         addRow('w');
+        addRow('g');
+        addRow('z');
+        addRow('d');
+        addRow('b');
+        addRow('p');
         hiragana.add(HiraganaMatrix.getSyllable('n'));
+    }
+
+    /**
+     * Changes the randomize pool using a boolean matrix.
+     * @param booleanMatrix the boolean matrix of the same size as the
+     *                      hiraganamatrix
+     */
+    public void setRandomizePoolByBooleanMatrix(Boolean[][] booleanMatrix) {
+        clear();
+        int matrixHeight = booleanMatrix.length;
+        int matrixWidth = booleanMatrix[0].length;
+
+        Syllable[][] syllableMatrix = HiraganaMatrix.getMatrix();
+
+        if (matrixHeight != syllableMatrix.length ||
+                matrixWidth != syllableMatrix[0].length) {
+            throw new IndexOutOfBoundsException("Boolean matrix differs from " +
+                    "Hiragana Matrix Size");
+        }
+
+        for (int i = 0; i < matrixHeight; i++) {
+            for (int j = 0; j < matrixWidth; j++) {
+                if (booleanMatrix[i][j]) {
+                    hiragana.add(syllableMatrix[i][j]);
+                }
+            }
+        }
     }
 }

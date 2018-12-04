@@ -73,9 +73,37 @@ public abstract class HiraganaMatrix {
                     null,
                     null,
                     null,
-                    null,}
+                    null,},
 
+            {       new Syllable("ga","が"),
+                    new Syllable("gi","ぎ"),
+                    new Syllable("gu","ぐ"),
+                    new Syllable("ge","げ"),
+                    new Syllable("go","ご"),},
 
+            {       new Syllable("za","ざ"),
+                    new Syllable("ji","じ"),
+                    new Syllable("zu","ず"),
+                    new Syllable("ze","ぜ"),
+                    new Syllable("zo","ぞ"),},
+
+            {       new Syllable("da","だ"),
+                    new Syllable("ji","ぢ"),
+                    new Syllable("zu","づ"),
+                    new Syllable("de","で"),
+                    new Syllable("do","ど"),},
+
+            {       new Syllable("ba","ば"),
+                    new Syllable("bi","び"),
+                    new Syllable("bu","ぶ"),
+                    new Syllable("be","べ"),
+                    new Syllable("bo","ぼ"),},
+
+            {       new Syllable("pa","ぱ"),
+                    new Syllable("pi","ぴ"),
+                    new Syllable("pu","ぷ"),
+                    new Syllable("pe","ぺ"),
+                    new Syllable("po","ぽ"),}
     };
 
 
