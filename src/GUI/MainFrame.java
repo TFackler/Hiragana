@@ -42,6 +42,8 @@ public class MainFrame extends JFrame {
         add(randomSingleHiraganaPanel);
 
 
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
         setVisible(true);
     }
 

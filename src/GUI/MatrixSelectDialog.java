@@ -2,6 +2,8 @@ package GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  * A class for making a dialog for selecting entries from a matrix
@@ -14,6 +16,10 @@ public abstract class MatrixSelectDialog<E> extends JDialog {
      * the size of the font displaying the checkbox label
      */
     private static final float FONTSIZE = 25f;
+
+    private static final int HGAP = 10;
+
+    private static final int VGAP = 10;
 
     /**
      * the font used to display the text of the checkbox labels
@@ -59,7 +65,7 @@ public abstract class MatrixSelectDialog<E> extends JDialog {
      * @param hasRowSelector    if this is true a checkbox for each row is created
      *                          that allows the user to select a row at once
      */
-    public MatrixSelectDialog(Frame parent, E[][] matrix, boolean hasColumnSelector, boolean hasRowSelector) {
+    public MatrixSelectDialog(Frame parent, E[][] matrix, boolean hasColumnSelector, boolean hasRowSelector, boolean[][] checked) {
         super(parent, true);
 
         /**
@@ -83,18 +89,19 @@ public abstract class MatrixSelectDialog<E> extends JDialog {
         font = getFont();
 
         if (IS_HORIZONTAL) {
-            setLayout(new GridLayout(matrixWidth, matrixHeight));
+            setLayout(new GridLayout(matrixWidth, matrixHeight, HGAP, VGAP));
         } else {
-            setLayout(new GridLayout(matrixHeight, matrixWidth));
+            setLayout(new GridLayout(matrixHeight, matrixWidth, HGAP, VGAP));
         }
         /**
          * displays the matrix and creates the corresponding checkboxes
          */
-        for (int i = 0; i < matrixHeight; i++) {
-            for (int j = 0; j < matrixWidth; j++) {
+        for (int j = 0; j < matrixWidth; j++) {
+            for (int i = 0; i < matrixHeight; i++) {
                 JPanel panel = new JPanel();
                 if (matrix[i][j] != null) {
                     checkboxMatrix[i][j] = new Checkbox();
+                    checkboxMatrix[i][j].setState(checked[i][j]);
                     JLabel checkBoxLabel = new JLabel(getCheckboxLabelString(matrix[i][j]));
                     checkBoxLabel.setFont(font.deriveFont(FONTSIZE));
                     panel.setLayout(new GridLayout(2, 1));
@@ -105,7 +112,14 @@ public abstract class MatrixSelectDialog<E> extends JDialog {
             }
         }
 
-        setDefaultCloseOperation(HIDE_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                refreshBooleanMatrix(checked);
+            }
+        });
 
         pack();
         setVisible(true);
@@ -138,7 +152,8 @@ public abstract class MatrixSelectDialog<E> extends JDialog {
         boolean[][] bMatrix = new boolean[matrixHeight][matrixWidth];
         for (int i = 0; i < matrixHeight; i++) {
             for (int j = 0; j < matrixWidth; j++) {
-                bMatrix[i][j] = checkboxMatrix[i][j].getState();
+                if (checkboxMatrix[i][j] != null)
+                    bMatrix[i][j] = checkboxMatrix[i][j].getState();
             }
         }
         return bMatrix;
@@ -149,6 +164,21 @@ public abstract class MatrixSelectDialog<E> extends JDialog {
      */
     public void exit() {
         dispose();
+    }
+
+    public static boolean[][] getBooleanMatrixFromMatrix(Object[][] matrix) {
+        if (matrix[0] == null)
+            return null;
+        return new boolean[matrix.length][matrix[0].length];
+    }
+
+    private void refreshBooleanMatrix(boolean[][] bMatrix) {
+        for (int i = 0; i < matrixHeight; i++) {
+            for (int j = 0; j < matrixWidth; j++) {
+                if (checkboxMatrix[i][j] != null)
+                    bMatrix[i][j] = checkboxMatrix[i][j].getState();
+            }
+        }
     }
 
 

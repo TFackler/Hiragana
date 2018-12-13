@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -59,6 +60,8 @@ public class RandomSingleHiraganaPanel extends JPanel{
      * the panel in which the buttons are located
      */
     private JPanel buttonPanel;
+
+    private boolean[][] checked = MatrixSelectDialog.getBooleanMatrixFromMatrix(HiraganaMatrix.getMatrix());
 
     /**
      * Constructor, that creates a new panel for displaying the random hirgana
@@ -142,10 +145,18 @@ public class RandomSingleHiraganaPanel extends JPanel{
         bSelect.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                HiraganaSelectDialog hsDialog = new HiraganaSelectDialog(parent, false, false);
+                new HiraganaSelectDialog(parent, false, false, checked);
                 // TODO boolean matrix has to be given to the hiragana randomizer
-                hsDialog.getBooleanMatrix();
-                hsDialog.exit();
+                randomizer.setRandomizePoolByBooleanMatrix(checked);
+/**
+                for (int i = 0; i < boolMatrix.length; i++) {
+                    for (int j = 0; j < boolMatrix[0].length; j++) {
+                        System.out.print("\t" + boolMatrix[i][j]);
+                    }
+                    System.out.println();
+                }
+                 System.out.print("---");
+ */
             }
         });
         buttonPanel.add(bSelect);

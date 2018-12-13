@@ -93,6 +93,7 @@ public class HiraganaRandomizer {
         addRow('k');
         addRow('s');
         addRow('t');
+        /**
         addRow('n');
         addRow('h');
         addRow('m');
@@ -105,6 +106,7 @@ public class HiraganaRandomizer {
         addRow('b');
         addRow('p');
         hiragana.add(HiraganaMatrix.getSyllable('n'));
+         */
     }
 
     /**
@@ -112,7 +114,7 @@ public class HiraganaRandomizer {
      * @param booleanMatrix the boolean matrix of the same size as the
      *                      hiraganamatrix
      */
-    public void setRandomizePoolByBooleanMatrix(Boolean[][] booleanMatrix) {
+    public void setRandomizePoolByBooleanMatrix(boolean[][] booleanMatrix) {
         clear();
         int matrixHeight = booleanMatrix.length;
         int matrixWidth = booleanMatrix[0].length;

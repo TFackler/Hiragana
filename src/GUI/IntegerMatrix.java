@@ -6,8 +6,8 @@ import java.awt.*;
 public class IntegerMatrix extends MatrixSelectDialog<Integer> {
 
 
-    public IntegerMatrix(Frame parent, Integer[][] matrix, boolean hasColumnSelector, boolean hasRowSelector) {
-        super(parent, matrix, hasColumnSelector, hasRowSelector);
+    public IntegerMatrix(Frame parent, Integer[][] matrix, boolean hasColumnSelector, boolean hasRowSelector, boolean[][] checked) {
+        super(parent, matrix, hasColumnSelector, hasRowSelector, checked);
     }
 
     @Override

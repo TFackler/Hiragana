@@ -20,8 +20,8 @@ public class HiraganaSelectDialog extends MatrixSelectDialog<Syllable> {
      * @param hasRowSelector indicates whether a checkbox to select a complete
      *                          row at once is created
      */
-    public HiraganaSelectDialog(Frame parent, boolean hasColumnSelector, boolean hasRowSelector) {
-        super(parent, HiraganaMatrix.getMatrix(), hasColumnSelector, hasRowSelector);
+    public HiraganaSelectDialog(Frame parent, boolean hasColumnSelector, boolean hasRowSelector, boolean[][] checked) {
+        super(parent, HiraganaMatrix.getMatrix(), hasColumnSelector, hasRowSelector, checked);
     }
 
     /**
