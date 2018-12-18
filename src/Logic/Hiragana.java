@@ -2,6 +2,7 @@ package Logic;
 
 import java.awt.image.BufferedImage;
 
+@Deprecated
 public class Hiragana {
 
     private String romanjiSyllable;

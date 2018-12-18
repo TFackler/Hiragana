@@ -1,5 +1,6 @@
 package Util;
 
+@Deprecated
 public abstract class ImageUtil {
 
     // use Batik Lib to convert svg to bufferedImage
