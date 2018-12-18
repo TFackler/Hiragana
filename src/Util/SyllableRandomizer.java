@@ -54,11 +54,11 @@ public class HiraganaRandomizer {
      * @param consonant the consonant of which the combined syllables are added
      */
     public void addRow(char consonant) {
-        hiragana.add(HiraganaMatrix.getSyllable('a', consonant));
-        hiragana.add(HiraganaMatrix.getSyllable('i', consonant));
-        hiragana.add(HiraganaMatrix.getSyllable('u', consonant));
-        hiragana.add(HiraganaMatrix.getSyllable('e', consonant));
-        hiragana.add(HiraganaMatrix.getSyllable('o', consonant));
+        hiragana.add(SyllableMatrix.getSyllable('a', consonant));
+        hiragana.add(SyllableMatrix.getSyllable('i', consonant));
+        hiragana.add(SyllableMatrix.getSyllable('u', consonant));
+        hiragana.add(SyllableMatrix.getSyllable('e', consonant));
+        hiragana.add(SyllableMatrix.getSyllable('o', consonant));
     }
 
     /**
@@ -119,7 +119,7 @@ public class HiraganaRandomizer {
         int matrixHeight = booleanMatrix.length;
         int matrixWidth = booleanMatrix[0].length;
 
-        Syllable[][] syllableMatrix = HiraganaMatrix.getMatrix();
+        Syllable[][] syllableMatrix = SyllableMatrix.getMatrix();
 
         if (matrixHeight != syllableMatrix.length ||
                 matrixWidth != syllableMatrix[0].length) {
