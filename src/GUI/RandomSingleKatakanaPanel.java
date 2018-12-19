@@ -12,22 +12,22 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 /**
- * A class for displaying the random hiragana writing exercise in a JPanel
+ * A class for displaying the random katakana writing exercise in a JPanel
  */
-public class RandomSingleHiraganaPanel extends JPanel{
+public class RandomSingleKatakanaPanel extends JPanel{
 
     /**
-     * the one random hiragana panel that can exist at once
+     * the one random katakana panel that can exist at once
      */
-    private static RandomSingleHiraganaPanel unique = null;
+    private static RandomSingleKatakanaPanel unique = null;
 
     /**
-     * shows wether the hiragana symbol is hidden
+     * shows wether the katakana symbol is hidden
      */
     private boolean isHidden = false;
 
     /**
-     * the object, that randomizes the order of appearing hiragana
+     * the object, that randomizes the order of appearing katakana
      */
     private SyllableRandomizer randomizer;
 
@@ -37,20 +37,20 @@ public class RandomSingleHiraganaPanel extends JPanel{
     private JFrame parent;
 
     /**
-     * the panel in which the hiragana and romanji characters are embedded in
+     * the panel in which the katakana and romanji characters are embedded in
      */
     private JPanel characterPanel;
 
     /**
-     * the labels in which the hiragana and romanji are written
+     * the labels in which the katakana and romanji are written
      */
     private JLabel romanjiLabel;
-    private JLabel hiraganaLabel;
+    private JLabel katakanaLabel;
 
     /**
      * the history used for keeping track of the syllable order
      */
-    private SyllableHistory hiraganaHistory = new SyllableHistory(100);
+    private SyllableHistory katakanaHistory = new SyllableHistory(100);
 
     /**
      * the panel in which the buttons are located
@@ -64,7 +64,7 @@ public class RandomSingleHiraganaPanel extends JPanel{
      * exercise
      * @param parent the JFrame this panel is embedded in
      */
-    private RandomSingleHiraganaPanel(JFrame parent) {
+    private RandomSingleKatakanaPanel(JFrame parent) {
 
         this.parent = parent;
 
@@ -74,7 +74,7 @@ public class RandomSingleHiraganaPanel extends JPanel{
         randomizer.addAll();
 
         /**
-         * initializing the part of the window responsible for displaying the romanji and hiragana variant of
+         * initializing the part of the window responsible for displaying the romanji and katakana variant of
          * the syllable
          */
         characterPanel = new JPanel();
@@ -84,10 +84,9 @@ public class RandomSingleHiraganaPanel extends JPanel{
         romanjiLabel.setFont(new Font(null, Font.PLAIN, 150));
         characterPanel.add(romanjiLabel);
 
-        hiraganaLabel = new JLabel("", SwingConstants.CENTER);
-        // hiraganaLabel.setFont(FontUtil.getHiraganaFont(getClass().getClassLoader()).deriveFont(200f));
-        hiraganaLabel.setFont(new Font(null, Font.PLAIN, 150));
-        characterPanel.add(hiraganaLabel);
+        katakanaLabel = new JLabel("", SwingConstants.CENTER);
+        katakanaLabel.setFont(new Font(null, Font.PLAIN, 150));
+        characterPanel.add(katakanaLabel);
 
         add(characterPanel, BorderLayout.CENTER);
 
@@ -98,10 +97,10 @@ public class RandomSingleHiraganaPanel extends JPanel{
 
         JButton bBack = new JButton("<-");
         bBack.addActionListener(e -> {
-            hiraganaHistory.previous();
-            Syllable s = hiraganaHistory.getCurrent();
+            katakanaHistory.previous();
+            Syllable s = katakanaHistory.getCurrent();
             romanjiLabel.setText(s.getRomanji());
-            hiraganaLabel.setText(s.getHiragana());
+            katakanaLabel.setText(s.getKatakana());
         });
         buttonPanel.add(bBack);
 
@@ -112,11 +111,11 @@ public class RandomSingleHiraganaPanel extends JPanel{
                 if (isHidden) {
                     isHidden = false;
                     bToggleHide.setText("hide");
-                    hiraganaLabel.setForeground(getForeground());
+                    katakanaLabel.setForeground(getForeground());
                 } else {
                     isHidden = true;
                     bToggleHide.setText("show");
-                    hiraganaLabel.setForeground(hiraganaLabel.getBackground());
+                    katakanaLabel.setForeground(katakanaLabel.getBackground());
                 }
             }
         });
@@ -127,10 +126,10 @@ public class RandomSingleHiraganaPanel extends JPanel{
         bNext.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                hiraganaHistory.next();
-                Syllable s = hiraganaHistory.getCurrent();
+                katakanaHistory.next();
+                Syllable s = katakanaHistory.getCurrent();
                 romanjiLabel.setText(s.getRomanji());
-                hiraganaLabel.setText(s.getHiragana());
+                katakanaLabel.setText(s.getKatakana());
             }
         });
         buttonPanel.add(bNext);
@@ -141,17 +140,17 @@ public class RandomSingleHiraganaPanel extends JPanel{
         bSelect.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new HiraganaSelectDialog(parent, false, false, checked);
-                // TODO boolean matrix has to be given to the hiragana randomizer
+                new KatakanaSelectDialog(parent, false, false, checked);
+                // TODO boolean matrix has to be given to the katakana randomizer
                 randomizer.setRandomizePoolByBooleanMatrix(checked);
 /**
-                for (int i = 0; i < boolMatrix.length; i++) {
-                    for (int j = 0; j < boolMatrix[0].length; j++) {
-                        System.out.print("\t" + boolMatrix[i][j]);
-                    }
-                    System.out.println();
-                }
-                 System.out.print("---");
+ for (int i = 0; i < boolMatrix.length; i++) {
+ for (int j = 0; j < boolMatrix[0].length; j++) {
+ System.out.print("\t" + boolMatrix[i][j]);
+ }
+ System.out.println();
+ }
+ System.out.print("---");
  */
             }
         });
@@ -164,10 +163,10 @@ public class RandomSingleHiraganaPanel extends JPanel{
             @Override
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                    hiraganaHistory.next();
-                    Syllable s = hiraganaHistory.getCurrent();
+                    katakanaHistory.next();
+                    Syllable s = katakanaHistory.getCurrent();
                     romanjiLabel.setText(s.getRomanji());
-                    hiraganaLabel.setText(s.getHiragana());
+                    katakanaLabel.setText(s.getKatakana());
                 }
             }
         });
@@ -180,9 +179,9 @@ public class RandomSingleHiraganaPanel extends JPanel{
      * @param parent the JFrame the panel is embedded in
      * @return the created or existent unique instance of this class
      */
-    public static RandomSingleHiraganaPanel getInstance(JFrame parent) {
+    public static RandomSingleKatakanaPanel getInstance(JFrame parent) {
         if (unique == null)
-            return new RandomSingleHiraganaPanel(parent);
+            return new RandomSingleKatakanaPanel(parent);
         return unique;
     }
 }

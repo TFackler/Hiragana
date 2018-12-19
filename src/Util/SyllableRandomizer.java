@@ -5,34 +5,34 @@ import Logic.Syllable;
 import java.util.ArrayList;
 
 /**
- * This class creates an object, that can return a randomly selected hiragana
+ * This class creates an object, that can return a randomly selected syllable
  * from a defined scope of syllables. It is not possible to have multiple
  * different randomizers at once.
  */
-public class HiraganaRandomizer {
+public class SyllableRandomizer {
 
     /**
      * the one randomizer object
      */
-    private static HiraganaRandomizer unique = null;
+    private static SyllableRandomizer unique = null;
 
     /**
      * the list containing the current scope of syllables, which is used
      * to select one syllable at random
      */
-    private static ArrayList<Syllable> hiragana = new ArrayList<>();
+    private static ArrayList<Syllable> syllable = new ArrayList<>();
 
     /**
      * the syllable, which is returned if an error occurs
      */
-    private Syllable errHiragana = new Syllable("err", "err");
+    private Syllable errHiragana = new Syllable("err", "err", "err");
 
     /**
      * The private constructor for the randomizer object. To get access to
      * an object of this class use
      * <Code>HiraganaRandomizer.getInstance()</Code>.
      */
-    private HiraganaRandomizer() {
+    private SyllableRandomizer() {
     }
 
     /**
@@ -40,39 +40,39 @@ public class HiraganaRandomizer {
      * is created.
      * @return the one randomizer object
      */
-    public static HiraganaRandomizer getInstance() {
+    public static SyllableRandomizer getInstance() {
         if (unique == null)
-            return new HiraganaRandomizer();
+            return new SyllableRandomizer();
         return unique;
     }
 
     /**
-     * This method adds the five hiragana syllables matching a given consonant,
+     * This method adds the five syllable syllables matching a given consonant,
      * also called a 'row'
      * The given consonant is combined with each vowel and the corresponding
      * syllable is added to the randomizer list.
      * @param consonant the consonant of which the combined syllables are added
      */
     public void addRow(char consonant) {
-        hiragana.add(SyllableMatrix.getSyllable('a', consonant));
-        hiragana.add(SyllableMatrix.getSyllable('i', consonant));
-        hiragana.add(SyllableMatrix.getSyllable('u', consonant));
-        hiragana.add(SyllableMatrix.getSyllable('e', consonant));
-        hiragana.add(SyllableMatrix.getSyllable('o', consonant));
+        syllable.add(SyllableMatrix.getSyllable('a', consonant));
+        syllable.add(SyllableMatrix.getSyllable('i', consonant));
+        syllable.add(SyllableMatrix.getSyllable('u', consonant));
+        syllable.add(SyllableMatrix.getSyllable('e', consonant));
+        syllable.add(SyllableMatrix.getSyllable('o', consonant));
     }
 
     /**
-     * This method returns a randomly selected hiragana syllable from the list
+     * This method returns a randomly selected syllable syllable from the list
      * of syllables
-     * @return a from the internal list randomly selected hiragana syllable
+     * @return a from the internal list randomly selected syllable syllable
      */
     public Syllable getRandomSyllable() {
-        if (hiragana.isEmpty()) {
+        if (syllable.isEmpty()) {
             return errHiragana;
         } else {
             Syllable randomHiragana = null;
             do {
-                randomHiragana = hiragana.get((int) (Math.random() * hiragana.size()));
+                randomHiragana = syllable.get((int) (Math.random() * syllable.size()));
             } while (randomHiragana == null);
             return randomHiragana;
         }
@@ -82,7 +82,7 @@ public class HiraganaRandomizer {
      * Clears the randomizer pool.
      */
     public void clear() {
-        hiragana.clear();
+        syllable.clear();
     }
 
     /**
@@ -93,7 +93,6 @@ public class HiraganaRandomizer {
         addRow('k');
         addRow('s');
         addRow('t');
-        /**
         addRow('n');
         addRow('h');
         addRow('m');
@@ -105,8 +104,6 @@ public class HiraganaRandomizer {
         addRow('d');
         addRow('b');
         addRow('p');
-        hiragana.add(HiraganaMatrix.getSyllable('n'));
-         */
     }
 
     /**
@@ -130,7 +127,7 @@ public class HiraganaRandomizer {
         for (int i = 0; i < matrixHeight; i++) {
             for (int j = 0; j < matrixWidth; j++) {
                 if (booleanMatrix[i][j]) {
-                    hiragana.add(syllableMatrix[i][j]);
+                    syllable.add(syllableMatrix[i][j]);
                 }
             }
         }

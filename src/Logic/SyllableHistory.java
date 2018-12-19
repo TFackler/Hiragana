@@ -1,6 +1,6 @@
 package Logic;
 
-import Util.HiraganaRandomizer;
+import Util.SyllableRandomizer;
 
 /**
  * A history of Syllable objects.
@@ -8,7 +8,7 @@ import Util.HiraganaRandomizer;
 public class SyllableHistory extends History<Syllable> {
 
     // the randomizer used for creating new syllables
-    private HiraganaRandomizer randomizer = HiraganaRandomizer.getInstance();
+    private SyllableRandomizer randomizer = SyllableRandomizer.getInstance();
 
     /**
      * Creates a new history for syllables

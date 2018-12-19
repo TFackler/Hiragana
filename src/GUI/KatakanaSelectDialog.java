@@ -7,19 +7,19 @@ import Util.SyllableMatrix;
 import java.awt.*;
 
 /**
- * a Dialog for selecting the hiragana from which the random hiragana are selected
+ * a Dialog for selecting the katakana from which the random katakana are selected
  */
-public class HiraganaSelectDialog extends MatrixSelectDialog<Syllable> {
+public class KatakanaSelectDialog extends MatrixSelectDialog<Syllable> {
 
     /**
-     * Creates a new dialog for selecting hiragana
+     * Creates a new dialog for selecting katakana
      * @param parent the parent frame of this dialog
      * @param hasColumnSelector indicates whether a checkbox to select a complete
      *                          column at once is created
      * @param hasRowSelector indicates whether a checkbox to select a complete
      *                          row at once is created
      */
-    public HiraganaSelectDialog(Frame parent, boolean hasColumnSelector, boolean hasRowSelector, boolean[][] checked) {
+    public KatakanaSelectDialog(Frame parent, boolean hasColumnSelector, boolean hasRowSelector, boolean[][] checked) {
         super(parent, SyllableMatrix.getMatrix(), hasColumnSelector, hasRowSelector, checked);
     }
 
@@ -32,7 +32,7 @@ public class HiraganaSelectDialog extends MatrixSelectDialog<Syllable> {
      */
     @Override
     public String getCheckboxLabelString(Syllable object) {
-        return "<html><p \"style:align=center\">" + object.getHiragana() + "<br>" + object.getRomanji() + "</p></html>";
+        return "<html><p \"style:align=center\">" + object.getKatakana() + "<br>" + object.getRomanji() + "</p></html>";
     }
 
     /**
@@ -41,6 +41,6 @@ public class HiraganaSelectDialog extends MatrixSelectDialog<Syllable> {
      */
     @Override
     public Font getFont() {
-        return FontUtil.getHiraganaFont(getClass().getClassLoader());
+        return FontUtil.getKatakanaFont(getClass().getClassLoader());
     }
 }
