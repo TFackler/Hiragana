@@ -1,11 +1,6 @@
 package GUI;
 
-import Util.HiraganaRandomizer;
-
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.util.Random;
 
 
 /**
@@ -17,6 +12,8 @@ public class MainFrame extends JFrame {
      * the panel which contains the random single hiragana writing exercise
      */
     private RandomSingleHiraganaPanel randomSingleHiraganaPanel;
+
+    private RandomSingleKatakanaPanel randomSingleKatakanaPanel;
 
 
     /**
@@ -38,8 +35,13 @@ public class MainFrame extends JFrame {
         /**
          * creates the panel which contains the random single hiragana writing exercise
          */
+        randomSingleKatakanaPanel = RandomSingleKatakanaPanel.getInstance(this);
+        add(randomSingleKatakanaPanel);
+
+        /**
         randomSingleHiraganaPanel = RandomSingleHiraganaPanel.getInstance(this);
         add(randomSingleHiraganaPanel);
+         */
 
 
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);

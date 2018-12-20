@@ -12,6 +12,9 @@ public abstract class FontUtil {
     // the default font for the hiragana strings
     private static Font hiraganaFont = null;
 
+    // the default font for the katakana strings
+    private static Font katakanaFont = null;
+
     /**
      * Returns the default font for the hiragana strings.
      * @param classLoader the classloader used for extracting the font from the res folder
@@ -28,6 +31,23 @@ public abstract class FontUtil {
             }
         }
         return hiraganaFont;
+    }
+
+    /**
+     * Returns the default font for the katakana strings.
+     * @param classLoader the classloader used for extracting the font from the res folder
+     * @return the font used for katakana strings
+     */
+    public static Font getKatakanaFont(ClassLoader classLoader) {
+        if (katakanaFont == null) {
+            try {
+                File fontFile = new File(classLoader.getResource("res/UDDigiKyokashoN-R.ttc").getFile());
+                katakanaFont = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+            } catch (IOException | FontFormatException e) {
+                System.err.println("Error creating Font!");
+            }
+        }
+        return katakanaFont;
     }
 
     /**
