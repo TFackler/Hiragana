@@ -13,6 +13,8 @@ public class MainFrame extends JFrame {
      */
     private RandomSingleHiraganaPanel randomSingleHiraganaPanel;
 
+    private RandomSingleKatakanaPanel randomSingleKatakanaPanel;
+
 
     /**
      * Creates a new main frame window
@@ -33,8 +35,13 @@ public class MainFrame extends JFrame {
         /**
          * creates the panel which contains the random single hiragana writing exercise
          */
+        randomSingleKatakanaPanel = RandomSingleKatakanaPanel.getInstance(this);
+        add(randomSingleKatakanaPanel);
+
+        /**
         randomSingleHiraganaPanel = RandomSingleHiraganaPanel.getInstance(this);
         add(randomSingleHiraganaPanel);
+         */
 
 
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
