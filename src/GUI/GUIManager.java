@@ -10,11 +10,14 @@ public class GUIManager {
 
     private static RandomSingleHiraganaPanel randomSingleHiraganaPanel;
 
+    private static JPanel currentPanel;
+
     private static NavigationPanel navigationPanel;
 
-
-
     private static JFrame mainFrame;
+
+    private static GUIManager unique = null;
+
 
     private GUIManager() {
         initFrame();
@@ -25,34 +28,44 @@ public class GUIManager {
 
         navigationPanel = new NavigationPanel(this);
 
-        switchToNavigationPanel();
+        currentPanel = navigationPanel;
 
+
+        mainFrame.add(currentPanel);
         mainFrame.setVisible(true);
     }
 
-    public void switchToRandomSingleKatakanaPanel() {
-        removeAll();
-        mainFrame.setContentPane(randomSingleKatakanaPanel);
-        mainFrame.invalidate();
-        mainFrame.validate();
+    public static GUIManager getInstance() {
+        if (unique == null)
+            unique = new GUIManager();
+        return unique;
     }
 
-    public void switchToRandomSingleHiraganaPanel() {
-        removeAll();
-        mainFrame.setContentPane(randomSingleHiraganaPanel);
-        mainFrame.invalidate();
-        mainFrame.validate();
-    }
+    public void navigateTo(PANELS destination) {
+        mainFrame.remove(currentPanel);
 
-    public void switchToNavigationPanel() {
-        removeAll();
-        mainFrame.setContentPane(navigationPanel);
+        switch (destination) {
+            case NAVIGATION:
+                currentPanel = navigationPanel;
+                break;
+            case RANDOM_SINGLE_HIRAGANA:
+                currentPanel = randomSingleHiraganaPanel;
+                break;
+            case RANDOM_SINGLE_KATAKANA:
+                currentPanel = randomSingleKatakanaPanel;
+                break;
+            default:
+                throw new UnhandledRunTimException("Not a panel to navigate to!");
+        }
+
+        mainFrame.add(currentPanel);
         mainFrame.invalidate();
-        mainFrame.validate();
+        mainFrame.revalidate();
+        mainFrame.repaint();
     }
 
     public static void main(String[] args) {
-        new GUIManager();
+        GUIManager guiManager = getInstance();
     }
 
     private void initFrame() {
@@ -70,11 +83,5 @@ public class GUIManager {
         mainFrame.setSize(800,400);
 
         mainFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-    }
-
-    private void removeAll() {
-        mainFrame.remove(randomSingleHiraganaPanel);
-        mainFrame.remove(randomSingleKatakanaPanel);
-        mainFrame.remove(navigationPanel);
     }
 }

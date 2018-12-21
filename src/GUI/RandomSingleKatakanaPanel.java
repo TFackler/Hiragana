@@ -141,7 +141,6 @@ public class RandomSingleKatakanaPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 new KatakanaSelectDialog(parent, false, false, checked);
-                // TODO boolean matrix has to be given to the katakana randomizer
                 randomizer.setRandomizePoolByBooleanMatrix(checked);
 /**
  for (int i = 0; i < boolMatrix.length; i++) {
@@ -155,6 +154,10 @@ public class RandomSingleKatakanaPanel extends JPanel{
             }
         });
         buttonPanel.add(bSelect);
+
+        JButton bNavigateBack = new JButton("Back to Menu");
+        bNavigateBack.addActionListener(e -> GUIManager.getInstance().navigateTo(PANELS.NAVIGATION));
+        buttonPanel.add(bNavigateBack);
 
         /**
          * Adding Keylisteners for extended UX
