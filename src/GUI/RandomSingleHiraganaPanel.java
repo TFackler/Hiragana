@@ -142,7 +142,6 @@ public class RandomSingleHiraganaPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 new HiraganaSelectDialog(parent, false, false, checked);
-                // TODO boolean matrix has to be given to the hiragana randomizer
                 randomizer.setRandomizePoolByBooleanMatrix(checked);
 /**
                 for (int i = 0; i < boolMatrix.length; i++) {
@@ -157,8 +156,13 @@ public class RandomSingleHiraganaPanel extends JPanel{
         });
         buttonPanel.add(bSelect);
 
+        JButton bNavigateBack = new JButton("Back to Menu");
+        bNavigateBack.addActionListener(e -> GUIManager.getInstance().navigateTo(PANELS.NAVIGATION));
+        buttonPanel.add(bNavigateBack);
+
         /**
          * Adding Keylisteners for extended UX
+         * TODO get Focus to actual JFrame and not one component
          */
         bNext.addKeyListener(new KeyAdapter() {
             @Override
