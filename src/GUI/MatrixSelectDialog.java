@@ -86,6 +86,29 @@ public abstract class MatrixSelectDialog<E> extends JDialog {
 
         checkboxMatrix = new Checkbox[matrixHeight][matrixWidth];
 
+        if (hasColumnSelector) {
+            // TODO make this a user input / constructor input
+            String[] columns = new String[matrixWidth];
+            for (int i = 0; i < matrixWidth; i++) {
+                columns[i] = "" + i;
+            }
+            for (int i = 0; i < matrixWidth; i++) {
+                Panel p = new Panel();
+                p.setLayout(new GridLayout(2,1));
+                p.add(new Label(columns[i]));
+                Checkbox cb = new Checkbox();
+                cb.addItemListener(e -> {
+                    // TODO somehow save the column in the checkbox
+                    // setColumn(i, !cb.getState());
+                    cb.setState(!cb.getState());
+
+                });
+
+            }
+        }
+
+
+
         font = getFont();
 
         if (IS_HORIZONTAL) {
@@ -178,6 +201,18 @@ public abstract class MatrixSelectDialog<E> extends JDialog {
                 if (checkboxMatrix[i][j] != null)
                     bMatrix[i][j] = checkboxMatrix[i][j].getState();
             }
+        }
+    }
+
+    private void setColumn(int column, boolean value) {
+        for (int j = 0; j < matrixHeight; j++) {
+            checkboxMatrix[column][j].setState(value);
+        }
+    }
+
+    private void setRow(int row, boolean value) {
+        for (int j = 0; j < matrixWidth; j++) {
+            checkboxMatrix[j][row].setState(value);
         }
     }
 

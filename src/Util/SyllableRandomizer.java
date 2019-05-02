@@ -33,6 +33,7 @@ public class SyllableRandomizer {
      * <Code>HiraganaRandomizer.getInstance()</Code>.
      */
     private SyllableRandomizer() {
+        addAll();
     }
 
     /**
